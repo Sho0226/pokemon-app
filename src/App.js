@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { getAllPokemon } from "./utils/pokemon";
+import { getAllPokemon, getPokemon } from "./utils/pokemon";
 
 function App() {
   const InitialURL = "https://pokeapi.co/api/v2/pokemon";
@@ -8,11 +8,23 @@ function App() {
   useEffect(() => {
     const fetchPokemonData = async () => {
       let res = await getAllPokemon(InitialURL);
+      loadPokemon(res.results);
+      console.log(res.results);
       console.log(res);
       setLoading(false);
     };
     fetchPokemonData();
   }, []);
+
+  const loadPokemon = (data) => {
+    let _pokemonData = Promise.all(
+      data.map((pokemon) => {
+        let pokemonRecord = getPokemon(pokemon.url);
+        return pokemonRecord;
+      })
+    );
+  };
+
   return (
     <div className="App">
       {loading ? (
