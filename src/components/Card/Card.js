@@ -1,33 +1,39 @@
+// Card.js
 import React from "react";
 import "./Card.css";
 
 export const Card = ({ pokemon }) => {
+  // typesInJapaneseが文字列の場合は配列に変換
+  const types = Array.isArray(pokemon.typesInJapanese)
+    ? pokemon.typesInJapanese
+    : pokemon.typesInJapanese.split(" / ");
+
   return (
     <div className="card">
       <div className="cardImg">
         <img src={pokemon.sprites.front_default} alt="" />
       </div>
-      <h3 className="cardName">{pokemon.name}</h3>
+      <h3 className="cardName">{pokemon.japaneseName || pokemon.name}</h3>
       <div className="cardTypes">
         <div>タイプ</div>
-        {pokemon.types.map((type) => {
-          return (
-            <div key={type.type.name}>
-              <span className="typeName">{type.type.name}</span>
-            </div>
-          );
-        })}
+        {types.map((type, index) => (
+          <div key={index}>
+            <span className="typeName">{type}</span>
+          </div>
+        ))}
       </div>
       <div className="cardInfo">
         <div className="cardData">
-          <p className="title">重さ：{pokemon.weight}</p>
+          <p className="title">重さ：{pokemon.weight / 10} kg</p>
         </div>
         <div className="cardData">
-          <p className="title">高さ：{pokemon.height}</p>
+          <p className="title">高さ：{pokemon.height / 10} m</p>
         </div>
         <div className="cardData">
           <p className="title">
-            アビリティ：{pokemon.abilities[0].ability.name}
+            アビリティ
+            <br />
+            {pokemon.abilitiesInJapanese[0]}
           </p>
         </div>
       </div>

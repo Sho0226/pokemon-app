@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { getAllPokemon, getPokemon } from "./utils/pokemon";
+import {
+  getAllPokemon,
+  getPokemon,
+  getPokemonAbilityJapaneseName,
+  getPokemonJapaneseName,
+  getPokemonTypes,
+} from "./utils/pokemon";
 import { Card } from "./components/Card/Card";
 import { Navbar } from "./components/Navbar/Navbar";
 
@@ -14,7 +20,7 @@ function App() {
   useEffect(() => {
     const fetchPokemonData = async () => {
       let res = await getAllPokemon(InitialURL);
-      loadPokemon(res.results);
+      await loadPokemon(res.results);
       console.log(res.results);
       setNextURL(res.next);
       setPrevURL(res.previous);
@@ -25,9 +31,23 @@ function App() {
 
   const loadPokemon = async (data) => {
     let _pokemonData = await Promise.all(
-      data.map((pokemon) => {
-        let pokemonRecord = getPokemon(pokemon.url);
-        return pokemonRecord;
+      data.map(async (pokemon) => {
+        let pokemonRecord = await getPokemon(pokemon.url);
+        const japaneseName = await getPokemonJapaneseName(
+          pokemonRecord.species.url
+        );
+        const pokemonTypes = await getPokemonTypes(pokemonRecord.types);
+        const abilityPromises = pokemonRecord.abilities.map(async (ability) => {
+          return await getPokemonAbilityJapaneseName(ability.ability.url);
+        });
+        const japaneseAbilities = await Promise.all(abilityPromises);
+
+        return {
+          ...pokemonRecord,
+          japaneseName,
+          typesInJapanese: pokemonTypes,
+          abilitiesInJapanese: japaneseAbilities,
+        };
       })
     );
     setPokemonData(_pokemonData);
