@@ -12,6 +12,14 @@
   margin-top: 0;
 }
 
-cardInfo {
+.cardInfo {
   text-align: center;
+}
+
+.cardTypes {
+  height: 60px;
+}
+
+.title {
+  height: 40px;
 }
