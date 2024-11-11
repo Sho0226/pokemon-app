@@ -1,9 +1,7 @@
-// Card.js
 import React from "react";
 import "./Card.css";
 
 export const Card = ({ pokemon }) => {
-  // typesInJapaneseが文字列の場合は配列に変換
   const types = Array.isArray(pokemon.typesInJapanese)
     ? pokemon.typesInJapanese
     : pokemon.typesInJapanese.split(" / ");
@@ -31,7 +29,7 @@ export const Card = ({ pokemon }) => {
         </div>
         <div className="cardData">
           <p className="title">
-            アビリティ
+            とくせい
             <br />
             {pokemon.abilitiesInJapanese[0]}
           </p>

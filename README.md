@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# Pokemon 図鑑 React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+PokeAPI を使用して作成したシンプルなポケモン図鑑アプリケーションです。ポケモンの基本情報を日本語で表示し、ページネーション機能を実装しています。
 
-## Available Scripts
+## 機能
 
-In the project directory, you can run:
+- ポケモンの基本情報の表示
+  - 日本語名
+  - タイプ（日本語）
+  - 特性（日本語）
+  - 画像
+- ページネーション機能による複数ポケモンの閲覧[1]
+- ローディング状態の表示[6]
 
-### `npm start`
+## 技術スタック
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React (Create React App)
+- CSS
+- PokeAPI
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## セットアップ
 
-### `npm test`
+```bash
+# リポジトリのクローン
+git clone [your-repository-url]
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# 依存関係のインストール
+cd pokemon-pokedex
+npm install
 
-### `npm run build`
+# 開発サーバーの起動
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## プロジェクト構造
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+src/
+├── components/
+│   ├── Card/
+│   │   └── Card.jsx
+│   └── Navbar/
+│       └── Navbar.jsx
+├── utils/
+│   └── pokemon.js
+├── App.css
+└── App.jsx
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 使用方法
 
-### `npm run eject`
+1. アプリケーションを起動すると、最初のページのポケモンが表示されます
+2. 「前へ」「次へ」ボタンでページを切り替えることができます
+3. 各ポケモンカードには、名前、タイプ、特性が日本語で表示されます
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## API について
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+このアプリケーションは[PokeAPI](https://pokeapi.co/)を使用しており、以下のエンドポイントを利用しています：
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- `/pokemon`: ポケモンの基本情報の取得
+- `/pokemon-species`: 日本語名の取得
+- `/ability`: 特性の日本語名の取得
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 開発者向け情報
 
-## Learn More
+データの取得は`utils/pokemon.js`に実装されており、以下の主要な関数があります：
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```javascript
+getAllPokemon(); // ポケモンリストの取得
+getPokemon(); // 個別ポケモンの詳細情報取得
+getPokemonJapaneseName(); // 日本語名の取得
+getPokemonAbilityJapaneseName(); // 特性の日本語名取得
+```
