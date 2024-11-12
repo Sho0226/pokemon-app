@@ -21,7 +21,7 @@ function App() {
     const fetchPokemonData = async () => {
       let res = await getAllPokemon(InitialURL);
       await loadPokemon(res.results);
-      console.log(res.results);
+      // console.log(res);
       setNextURL(res.next);
       setPrevURL(res.previous);
       setLoading(false);

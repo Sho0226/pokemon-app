@@ -12,6 +12,7 @@ export const getPokemon = (url) => {
       .then((res) => res.json())
       .then((data) => {
         resolve(data);
+        console.log(data);
       });
   });
 };
@@ -46,5 +47,5 @@ export const getPokemonAbilityJapaneseName = async (url) => {
   const japaneseName = data.names.find(
     (name) => name.language.name === "ja"
   )?.name;
-  return japaneseName || "アビリティなし";
+  return japaneseName || "とくせいなし";
 };
