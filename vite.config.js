@@ -3,14 +3,8 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
+  base: "/pokemon-app/",
   resolve: {
     extensions: [".js", ".jsx"],
-  },
-  build: {
-    // TypeScriptのエラーを無視してビルドを続行
-    typescript: {
-      noEmit: true,
-      ignoreBuildErrors: true,
-    },
   },
 });
