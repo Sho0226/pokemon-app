@@ -4,13 +4,18 @@ export interface PokemonData {
   japaneseName: string;
   typesInJapanese: string[];
   abilitiesInJapanese: string[];
+  sprites: {
+    front_default: string;
+  };
+  weight: number;
+  height: number;
   species: {
     url: string;
   };
   types: {
     type: {
       name: string;
-      url: string; // urlプロパティを追加
+      url: string;
     };
   }[];
   abilities: {
@@ -18,7 +23,6 @@ export interface PokemonData {
       url: string;
     };
   }[];
-  url: string;
 }
 
 export interface ApiResponse {

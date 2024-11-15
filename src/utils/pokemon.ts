@@ -1,7 +1,7 @@
 import { ApiResponse, NameData, PokemonData, TypeData } from "./type";
 
 export const getAllPokemon = (url: string): Promise<ApiResponse> => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => resolve(data));
@@ -9,7 +9,7 @@ export const getAllPokemon = (url: string): Promise<ApiResponse> => {
 };
 
 export const getPokemon = (url: string): Promise<PokemonData> => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -23,7 +23,7 @@ export const getPokemonJapaneseName = async (url: string): Promise<string> => {
   const response = await fetch(url);
   const data = await response.json();
   const japaneseName = data.names.find(
-    (name) => name.language.name === "ja"
+    (name: { language: { name: string } }) => name.language.name === "ja"
   )?.name;
   return japaneseName || "名前なし";
 };

@@ -1,10 +1,13 @@
-import React from "react";
+import { FC } from "react";
 import "./Card.css";
+import { PokemonData } from "../../utils/type";
 
-export const Card = ({ pokemon }) => {
-  const types = Array.isArray(pokemon.typesInJapanese)
-    ? pokemon.typesInJapanese
-    : pokemon.typesInJapanese.split(" / ");
+interface CardProps {
+  pokemon: PokemonData;
+}
+
+export const Card: FC<CardProps> = ({ pokemon }) => {
+  const { typesInJapanese } = pokemon;
 
   return (
     <div className="card">
@@ -14,7 +17,7 @@ export const Card = ({ pokemon }) => {
       <h3 className="cardName">{pokemon.japaneseName || pokemon.name}</h3>
       <div className="cardTypes">
         <div>タイプ</div>
-        {types.map((type, index) => (
+        {typesInJapanese.map((type: string, index: number) => (
           <div key={index}>
             <span className="typeName">{type}</span>
           </div>
