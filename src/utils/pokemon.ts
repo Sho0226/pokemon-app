@@ -1,4 +1,6 @@
-export const getAllPokemon = (url) => {
+import { ApiResponse, NameData, PokemonData, TypeData } from "./type";
+
+export const getAllPokemon = (url: string): Promise<ApiResponse> => {
   return new Promise((resolve, reject) => {
     fetch(url)
       .then((res) => res.json())
@@ -6,7 +8,7 @@ export const getAllPokemon = (url) => {
   });
 };
 
-export const getPokemon = (url) => {
+export const getPokemon = (url: string): Promise<PokemonData> => {
   return new Promise((resolve, reject) => {
     fetch(url)
       .then((res) => res.json())
@@ -17,7 +19,7 @@ export const getPokemon = (url) => {
   });
 };
 
-export const getPokemonJapaneseName = async (url) => {
+export const getPokemonJapaneseName = async (url: string): Promise<string> => {
   const response = await fetch(url);
   const data = await response.json();
   const japaneseName = data.names.find(
@@ -26,12 +28,12 @@ export const getPokemonJapaneseName = async (url) => {
   return japaneseName || "名前なし";
 };
 
-export const getPokemonTypes = async (types) => {
+export const getPokemonTypes = async (types: TypeData[]): Promise<string[]> => {
   const typeUrls = types.map((type) => type.type.url);
   const typeNames = await Promise.all(
     typeUrls.map(async (url) => {
       const response = await fetch(url);
-      const data = await response.json();
+      const data: { names: NameData[] } = await response.json();
       const japaneseName = data.names.find(
         (name) => name.language.name === "ja"
       )?.name;
@@ -41,9 +43,9 @@ export const getPokemonTypes = async (types) => {
   return typeNames;
 };
 
-export const getPokemonAbilityJapaneseName = async (url) => {
+export const getPokemonAbilityJapaneseName = async (url: string) => {
   const response = await fetch(url);
-  const data = await response.json();
+  const data: { names: NameData[] } = await response.json();
   const japaneseName = data.names.find(
     (name) => name.language.name === "ja"
   )?.name;

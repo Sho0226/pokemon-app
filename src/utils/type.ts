@@ -10,6 +10,7 @@ export interface PokemonData {
   types: {
     type: {
       name: string;
+      url: string; // urlプロパティを追加
     };
   }[];
   abilities: {
@@ -26,4 +27,18 @@ export interface ApiResponse {
   }[];
   next: string;
   previous: string | null;
+}
+
+export interface TypeData {
+  type: {
+    name: string;
+    url: string;
+  };
+}
+
+export interface NameData {
+  name: string;
+  language: {
+    name: string;
+  };
 }
