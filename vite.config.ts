@@ -5,6 +5,6 @@ export default defineConfig({
   plugins: [react()],
   base: "/pokemon-app/",
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".ts", ".tsx"],
   },
 });
