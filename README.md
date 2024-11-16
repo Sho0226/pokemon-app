@@ -14,7 +14,8 @@ PokeAPI を使用して作成したシンプルなポケモン図鑑アプリケ
 
 ## 技術スタック
 
-- React (Create React App)
+- TypeScript
+- React (Create vite App)
 - CSS
 - PokeAPI
 
@@ -38,13 +39,13 @@ npm start
 src/
 ├── components/
 │   ├── Card/
-│   │   └── Card.jsx
+│   │   └── Card.tsx
 │   └── Navbar/
-│       └── Navbar.jsx
+│       └── Navbar.tsx
 ├── utils/
-│   └── pokemon.js
+│   └── pokemon.ts
 ├── App.css
-└── App.jsx
+└── App.tsx
 ```
 
 ## 使用方法
@@ -63,7 +64,7 @@ src/
 
 ## 開発者向け情報
 
-データの取得は`utils/pokemon.js`に実装されており、以下の主要な関数があります：
+データの取得は`utils/pokemon.ts`に実装されており、以下の主要な関数があります：
 
 ```javascript
 getAllPokemon(); // ポケモンリストの取得
